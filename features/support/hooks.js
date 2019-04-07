@@ -4,6 +4,7 @@ const testControllerHolder = require('../support/testControllerHolder');
 const {AfterAll, setDefaultTimeout, Before, After, Status} = require('cucumber');
 const errorHandling = require('../support/errorHandling');
 const TIMEOUT = 20000;
+const slack = require('@trint/testcafe-reporter-slack')
 
 let isTestCafeError = false;
 let attachScreenshotToReport = null;
@@ -30,6 +31,7 @@ function runTest(iteration, browser) {
                 .src('./test.js')
                 .screenshots('reports/screenshots/', true)
                 .browsers(browser)
+                .reporter(slack)
                 .run()
                 .catch(function(error) {
                     console.error(error);
@@ -70,7 +72,7 @@ AfterAll(function() {
     let intervalId = null;
 
     function waitForTestCafe() {
-        intervalId = setInterval(checkLastResponse, 500);
+        intervalId = setInterval(checkLastResponse, 1000);
     }
 
     function checkLastResponse() {

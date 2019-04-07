@@ -13,7 +13,7 @@
   },
   "scripts": {
     "debug": "node --inspect=1337 --debug-brk --nolazy node_modules/cucumber/bin/cucumber-js --tags @debug --format json:./reports/report.json",
-    "test": "./node_modules/.bin/cucumber-js.cmd",
+    "test": "cucumber-js --world-parameters \"{\\\"browser\\\": \\\"chrome:headless\\\"}\"",
     "test-report": "./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json",
     "test-chrome": "./node_modules/.bin/cucumber-js.cmd  --world-parameters \"{\\\"browser\\\": \\\"chrome\\\"}\"",
     "test-ie": "./node_modules/.bin/cucumber-js.cmd  --world-parameters \"{\\\"browser\\\": \\\"ie\\\"}\"",
@@ -31,8 +31,10 @@
     "test-firefox-headless": "./node_modules/.bin/cucumber-js.cmd  --world-parameters \"{\\\"browser\\\": \\\"firefox:headless\\\"}\""
   },
   "dependencies": {
+    "@trint/testcafe-reporter-slack": "0.0.8",
     "base64-img": "^1.0.4",
     "cucumber": "^5.1.0",
+    "custom-env": "^1.0.0",
     "eslint": "^4.19.1",
     "npm": "^6.0.0",
     "testcafe": "^1.1.0"
